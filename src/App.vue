@@ -1,7 +1,7 @@
 <template>
   <div id="app" style="width: 800px;">
     <div class="is-size-3" style="margin-bottom: 60px;">
-      WebSocket
+      <span>WebSocket Debugging Tool</span>
     </div>
     <div style="display: flex; justify-content: center; margin-bottom: 20px;">
       <b-input v-model="url"></b-input>
@@ -12,9 +12,14 @@
       <b-input style="width: 464px;" v-model="message" placeholder="sec-websocket-key"></b-input>
       <b-button class="button is-primary" @click="sendMessage">Send</b-button>
     </div>
-    <div class="input" style="display: flex; justify-content: center; overflow: auto; height:200px; width: 528px; margin: 0 auto;">
-      <span style="white-space: pre; text-align: left;">{{output}}</span>
+    <div class="input" style="display: flex; justify-content: center; overflow: auto; height:200px; width: 528px; margin: 0 auto; margin-bottom: 20px;">
+      <span v-if="output" style="white-space: pre; text-align: left;">{{output}}</span>
+      <span v-else style="white-space: pre; text-align: left;">No data</span>
     </div>
+    <div style="width: 528px; margin: 0 auto;">
+      <span>Note: For debugging you can go to firefox's about:config and toggle network.websocket.allowInsecureFromHTTPS to get rid of the SecurityError.</span>
+    </div>
+
   </div>
 </template>
 
@@ -23,8 +28,8 @@ export default {
   name: 'app',
   data () {
     return {
-      url: 'ws://localhost:3000/onUpdateUser',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOThmZjNkMDhiZThkMGZlYzEyYTBhOSIsImlhdCI6MTU3MTM0Njg3MH0.ts8FiD-YL3QTOOGxRzBnkjTN5uXn8MpkvGjoSvjiSnU',
+      url: 'ws://localhost:<port>/<endpoint>',
+      token: '',
       output: '',
       socket: null,
       message: ''

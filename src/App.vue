@@ -51,7 +51,7 @@ const examplesText = `webSocketUrl = ws://localhost:3000/onUpdateUser
   loginUrl = http://localhost:3000/users/login
   loginParams = {"email": "test36@gmail.com","password": "asdad"}
   this.exampleUrl = http://localhost:3000/users/update
-  exampleParams = {"isSync":false,"first_name":"Lilaland"}`
+  exampleParams = {"is_sync":false,"first_name":"Lilaland"}`
 
 export default {
   name: 'app',
@@ -100,7 +100,7 @@ export default {
       this.loginPathToKey = 'data.jwt'
 
       this.exampleUrl = 'http://localhost:3000/users/update'
-      this.exampleParams = '{"isSync":false,"first_name":"Lilaland"}'
+      this.exampleParams = '{"is_sync":false,"first_name":"Lilaland"}'
     },
     openConnection () {
       if (this.socket) {

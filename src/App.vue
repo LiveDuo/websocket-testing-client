@@ -74,7 +74,9 @@ export default {
     async login () {
       try {
         let params = JSON.parse(this.loginParams)
-        let result = await axios({ method: 'post', url: this.loginUrl, data: params })
+
+        let headers = { 'Access-Control-Allow-Origin': 'http://localhost:3000' }
+        let result = await axios({ method: 'post', url: this.loginUrl, headers: headers, data: params })
         this.token = getPropertyFromPath(result, this.loginPathToKey)
       } catch (error) {
         console.log(error.message)
@@ -83,10 +85,11 @@ export default {
     async example () {
       try {
         // let params = JSON.parse(this.exampleParams)
-        var formData = new FormData()
+        let formData = new FormData()
         formData.set('json', this.exampleParams)
 
-        let result = await axios({ method: 'post', url: this.exampleUrl, data: formData, headers: { Authorization: `Bearer ${this.token}` } })
+        let headers = { 'Access-Control-Allow-Origin': 'http://localhost:3000', Authorization: `Bearer ${this.token}` }
+        let result = await axios({ method: 'post', url: this.exampleUrl, headers: headers, data: formData })
         console.log(result)
       } catch (error) {
         console.log(error.message)
